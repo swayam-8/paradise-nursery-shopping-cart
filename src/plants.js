@@ -1,0 +1,10 @@
+const photo = (id) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=600&q=80`;
+const images = ['photo-1416879595882-3373a0480b5b','photo-1459411621453-7b03977f4bfc','photo-1485955900006-10f4d324d411','photo-1501004318641-b39e6451bec6','photo-1497250681960-ef046c08a56e','photo-1463320726281-696a485928c7'];
+const groups = [
+ ['Air-purifying plants', [['Snake Plant',25,'Sculptural leaves with an easygoing spirit.'],['Peace Lily',22,'Elegant white blooms and lush green leaves.'],['Spider Plant',16,'Playful arching leaves, perfect for a shelf.'],['Boston Fern',24,'Soft, feathery fronds for a greener corner.'],['Rubber Plant',32,'Glossy leaves that make a bold statement.'],['Golden Pothos',18,'Golden trailing vines that love to grow.']]],
+ ['Aromatic plants', [['Lavender',20,'A calming fragrance and delicate purple flowers.'],['Rosemary',15,'Fresh, fragrant foliage for a sunny windowsill.'],['Jasmine',28,'Sweetly scented flowers to brighten your day.'],['Sweet Basil',12,'A fresh kitchen favorite with fragrant leaves.'],['Mint',10,'A refreshing little companion for your kitchen.'],['Lemon Balm',14,'Soft leaves with a cheerful citrus fragrance.']]],
+ ['Easy-care plants', [['ZZ Plant',30,'Deep green leaves and a carefree personality.'],['Jade Plant',19,'A small succulent with beautiful rounded leaves.'],['Aloe Vera',17,'Sun-loving succulent with architectural leaves.'],['Zebra Haworthia',14,'A compact succulent with striking white stripes.'],['Heartleaf Philodendron',23,'Heart-shaped foliage and graceful trailing vines.'],['Ponytail Palm',35,'A playful silhouette for your brightest corner.']]]
+];
+export const categories = groups.map(([name]) => name);
+export const plants = groups.flatMap(([category, entries], group) => entries.map(([name, price, description], index) => ({id: `${group}-${index}`,name,price,description,category,image:photo(images[(index+group)%images.length])})));
+export const money = value => new Intl.NumberFormat('en-US', {style:'currency',currency:'USD'}).format(value);
